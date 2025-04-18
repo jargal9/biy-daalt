@@ -1,0 +1,8 @@
+com\jargal\flashcard\WorstFirstSorter.class
+com\jargal\flashcard\Card.class
+com\jargal\flashcard\RecentMistakesFirstSorter.class
+com\jargal\flashcard\AchievementTracker.class
+com\jargal\flashcard\FlashcardApp.class
+com\jargal\flashcard\Achievement.class
+com\jargal\flashcard\CardOrganizer.class
+com\jargal\flashcard\RandomSorter.class
