@@ -6,7 +6,6 @@ public class Card {
     private int correctAnswers;
     private boolean answeredCorrectlyLastTime;
     private int attempts;
-    private long lastAnswerTime;
 
     public Card(String question, String answer) {
         this.question = question;
@@ -14,7 +13,6 @@ public class Card {
         this.correctAnswers = 0;
         this.answeredCorrectlyLastTime = true;
         this.attempts = 0;
-        this.lastAnswerTime = 0;
     }
 
     public String getQuestion() {
@@ -47,13 +45,5 @@ public class Card {
 
     public void incrementAttempts() {
         this.attempts++;
-    }
-
-    public long getLastAnswerTime() {
-        return lastAnswerTime;
-    }
-
-    public void setLastAnswerTime(long lastAnswerTime) {
-        this.lastAnswerTime = lastAnswerTime;
     }
 }

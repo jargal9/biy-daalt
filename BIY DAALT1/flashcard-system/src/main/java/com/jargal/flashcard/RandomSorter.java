@@ -7,6 +7,7 @@ import java.util.List;
 public class RandomSorter implements CardOrganizer {
     @Override
     public List<Card> organize(List<Card> cards) {
+        //Сards жагсаалтыг хуулбар хийнэ
         List<Card> shuffledCards = new ArrayList<>(cards);
         Collections.shuffle(shuffledCards);
         return shuffledCards;

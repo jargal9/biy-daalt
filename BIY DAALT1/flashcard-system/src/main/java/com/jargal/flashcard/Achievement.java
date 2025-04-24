@@ -11,12 +11,9 @@ public enum Achievement {
         this.description = description;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
     @Override
     public String toString() {
         return name() + ": " + description;
     }
 }
+

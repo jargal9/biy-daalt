@@ -1,20 +1,22 @@
 package com.jargal.flashcard;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class AchievementTracker {
-    private Set<Achievement> unlockedAchievements;
+    private List<Achievement> unlockedAchievements;
 
     public AchievementTracker() {
-        this.unlockedAchievements = new HashSet<>();
+        this.unlockedAchievements = new ArrayList<>();
+    }
+    private void addAchievementIfNotExists(Achievement achievement) {
+        if (!unlockedAchievements.contains(achievement)) {
+            unlockedAchievements.add(achievement);
+        }
     }
 
-    public void checkAchievements(List<Card> cardsThisRound, long totalTimeInSeconds) {
+    public void checkAchievements(List<Card> cardsThisRound) {
         if (cardsThisRound.isEmpty()) return;
-    
+
         boolean allCorrectThisRound = true;
         for (Card card : cardsThisRound) {
             if (!card.isAnsweredCorrectlyLastTime()) {
@@ -23,27 +25,26 @@ public class AchievementTracker {
             }
         }
         if (allCorrectThisRound) {
-            unlockedAchievements.add(Achievement.CORRECT);
+            addAchievementIfNotExists(Achievement.CORRECT);
         }
-    
+
         for (Card card : cardsThisRound) {
             if (card.getAttempts() > 5) {
-                unlockedAchievements.add(Achievement.REPEAT);
-                break; 
+                addAchievementIfNotExists(Achievement.REPEAT);
+                break;
             }
         }
-    
+
         for (Card card : cardsThisRound) {
             if (card.getCorrectAnswers() >= 3) {
-                unlockedAchievements.add(Achievement.CONFIDENT);
+                addAchievementIfNotExists(Achievement.CONFIDENT);
                 break;
             }
         }
     }
-    
 
-    public Set<Achievement> getUnlockedAchievements() {
-        return new HashSet<>(unlockedAchievements);
+    public List<Achievement> getUnlockedAchievements() {
+        return new ArrayList<>(unlockedAchievements);
     }
 
     public void displayAchievements() {

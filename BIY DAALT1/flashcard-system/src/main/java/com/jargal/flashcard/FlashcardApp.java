@@ -1,4 +1,3 @@
-// FlashcardApp.java
 package com.jargal.flashcard;
 
 import java.io.File;
@@ -10,7 +9,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class FlashcardApp {
-    private static final String HELP_MESSAGE = 
+    private static final String HELP_MESSAGE =
             "Usage: flashcard <cards-file> [options]\n" +
             "Options:\n" +
             "  --help                         Тусламжийн мэдээлэл харуулах\n" +
@@ -137,7 +136,6 @@ public class FlashcardApp {
         while (continuePractice) {
             System.out.println("\n=== Toirog " + round + " ===");
             List<Card> organizedCards = organizer.organize(cards);
-            long startTime = System.currentTimeMillis();
             int correctAnswersInRound = 0;
 
             for (Card card : organizedCards) {
@@ -148,8 +146,6 @@ public class FlashcardApp {
                 System.out.print("Tanii hariult: ");
                 String userAnswer = scanner.nextLine().trim();
 
-                long answerTime = System.currentTimeMillis();
-                card.setLastAnswerTime(answerTime - startTime);
                 card.incrementAttempts();
 
                 boolean correct = userAnswer.equalsIgnoreCase(back);
@@ -169,7 +165,9 @@ public class FlashcardApp {
                     System.out.println("Yvts: " + card.getCorrectAnswers() + "/" + repetitions + " zov hariulsan baina.");
                 }
             }
-           System.out.println("\n=== Amjiltuud ===");
+
+            System.out.println("\n=== Amjiltuud ===");
+            achievementTracker.checkAchievements(cards);
             achievementTracker.displayAchievements();
 
             boolean allMastered = true;
@@ -181,7 +179,7 @@ public class FlashcardApp {
             }
 
             if (allMastered) {
-                System.out.println("\nTa ene cardiig buren ezemshjee!.");
+                System.out.println("\nTa buh kartiig buren ezemshlee!");
                 continuePractice = false;
             } else {
                 System.out.print("\nUrgeljluuleh uu? (y/n): ");
@@ -201,7 +199,7 @@ public class FlashcardApp {
                         case "recent":
                             organizer = new RecentMistakesFirstSorter();
                             break;
-                        case "skip":
+                        case "ugui":
                             break;
                         default:
                             System.out.println("Zov songolt oruulna uu.");
